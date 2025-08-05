@@ -11,7 +11,7 @@ let score = 0;
 //Preload images
 function preload() {
   seed = loadImage('assets/seed-removebg-preview.png');
-  roots = loadImage('assets/OIP-removebg-preview.png');
+  paddle = loadImage('assets/th-removebg-preview.png');
 }
 
 /* SETUP RUNS ONCE */
@@ -20,8 +20,8 @@ function setup() {
   background(0);
 
   //Create paddle 
-  paddle = new Sprite(200,380,100,20);
-  paddle.color = color(95,158,160);
+  paddle.resize(100,100);
+  paddle = new Sprite(paddle,350,100,20);
   paddle.rotationLock = true;
   
   //Create ball
@@ -29,7 +29,6 @@ function setup() {
   seed = new Sprite(seed, 200, 10);
   seed.direction = 'down';
   seed.speed = 5;
-  seed.collider = 'k';
   seed.bounciness = 1;
   seed.friction = 100;
   //Create walls
