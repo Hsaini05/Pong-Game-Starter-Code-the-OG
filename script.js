@@ -29,7 +29,6 @@ function setup() {
   seed.speed = 5;
   seed.bounciness = 1;
   seed.friction = 100;
-  seed.resize(50,50);
   //Create walls
   walls = new Group();
 	walls.w = 10;
