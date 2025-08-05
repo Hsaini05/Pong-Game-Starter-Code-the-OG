@@ -10,7 +10,7 @@ let score = 0;
 
 //Preload images
 function preload() {
-  seedImage = loadImage('assets/seed-removebg-preview.png');
+  seed = loadImage('assets/seed-removebg-preview.png');
 }
 
 /* SETUP RUNS ONCE */
@@ -24,18 +24,19 @@ function setup() {
   paddle.rotationLock = true;
   
   //Create ball
-  seed = new Sprite(100, 50, 20);
+  seed = new Sprite(seed, 200, 10);
   seed.direction = 'down';
   seed.speed = 5;
   seed.bounciness = 1;
   seed.friction = 100;
+  seed.resize(50,50);
   //Create walls
   walls = new Group();
 	walls.w = 10;
 	walls.h = 400;
   walls.collider = "static";
   walls.visible = false;
-  walls.bounciness = 1;
+  walls.bounciness = 0;
 
   // left and right walls
 	new walls.Sprite(0, height / 2);
