@@ -11,6 +11,7 @@ let score = 0;
 //Preload images
 function preload() {
   seed = loadImage('assets/seed-removebg-preview.png');
+  roots = loadImage('assets/OIP-removebg-preview.png');
 }
 
 /* SETUP RUNS ONCE */
@@ -24,9 +25,11 @@ function setup() {
   paddle.rotationLock = true;
   
   //Create ball
+  seed.resize(20,20);
   seed = new Sprite(seed, 200, 10);
   seed.direction = 'down';
   seed.speed = 5;
+  seed.collider = 'k';
   seed.bounciness = 1;
   seed.friction = 100;
   //Create walls
