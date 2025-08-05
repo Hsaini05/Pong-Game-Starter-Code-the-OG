@@ -9,16 +9,14 @@ let paddle;
 let score = 0;
 
 //Preload images
-function preload(){
-  seedImage.img = seedImage;
-  seedImage = preload('assets/seed-removebg-preview.png');
+function preload() {
   seedImage = loadImage('assets/seed-removebg-preview.png');
 }
 
 /* SETUP RUNS ONCE */
 function setup() {
   createCanvas(400,400);
-  background(224,224,224);
+  background(0);
 
   //Create paddle 
   paddle = new Sprite(200,380,100,20);
@@ -27,7 +25,6 @@ function setup() {
   
   //Create ball
   seed = new Sprite(100, 50, 20);
-  seed.color = color(128,128,128);
   seed.direction = 'down';
   seed.speed = 5;
   seed.bounciness = 1;
