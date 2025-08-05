@@ -1,22 +1,24 @@
 //Use the mouse to move the paddle from left to right. Keep the ball in the air. If it touches the ground, you lose.
 
 /* VARIABLES */
-let seedImage;
+let seed;
 let root;
 let stem; 
 let flower;
 let paddle;
 let score = 0;
 
+//Preload images
+function preload(){
+  seedImage.img = seedImage;
+  seedImage = preload('assets/seed-removebg-preview.png');
+  seedImage = loadImage('assets/seed-removebg-preview.png');
+}
+
 /* SETUP RUNS ONCE */
 function setup() {
   createCanvas(400,400);
   background(224,224,224);
-
-  //Preload images
-  function preload(){
-    seedImage = loadImage('assets/seed-removebg-preview.png');
-  }
 
   //Create paddle 
   paddle = new Sprite(200,380,100,20);
