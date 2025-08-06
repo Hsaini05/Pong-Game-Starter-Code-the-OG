@@ -126,6 +126,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
      water.x = random (20,380);
     water.y = random (20,300);
     water.visible = true;
+    water.collider = "static";
   }
 
   //When ball collides with sun 
@@ -138,6 +139,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.y = random(10,300);
     sun.x = random (10,380);
     sun.visible = true;
+    sun.collider = "static";
   }
 
   // Change animation of seed
