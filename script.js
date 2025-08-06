@@ -149,10 +149,30 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     root.visible = false;
   }
 
-  // Show bugs based on score
-  if (score >= 1) bug1.visible = true;
-  if (score >= 3) bug2.visible = true;
-  if (score >= 5) bug3.visible = true;
+  // Show bugs based on score and manage their colliders
+  if (score >= 1) {
+    bug1.visible = true;
+    bug1.collider = "static";
+  } else {
+    bug1.visible = false;
+    bug1.collider = "none";
+  }
+  
+  if (score >= 3) {
+    bug2.visible = true;
+    bug2.collider = "static";
+  } else {
+    bug2.visible = false;
+    bug2.collider = "none";
+  }
+  
+  if (score >= 5) {
+    bug3.visible = true;
+    bug3.collider = "static";
+  } else {
+    bug3.visible = false;
+    bug3.collider = "none";
+  }
 
   //If ball collides with bug
   if (seed.collides(bug)) {
