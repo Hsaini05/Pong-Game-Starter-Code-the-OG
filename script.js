@@ -66,7 +66,7 @@ function preload() {
   paddle = new Sprite(paddle,300,100,20);
   paddle.rotationLock = true;
   paddle.bounciness = 1;
-    paddle.collider = "k";
+    paddle.collider = "kinematic";
   
   //Create ball
   seed.resize(30,30);
@@ -144,9 +144,9 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   if (score >= 2) {
   seed = new Sprite(root,200,100);
     root.visible = true;
-  } else(
+  } else{
     root.visible = false;
-  )
+  }
   //If ball collides with bug
   if (seed.collides(bug)) {
     seed.speed = (seed.speed - 1);
