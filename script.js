@@ -17,6 +17,9 @@ function preload() {
   water = loadImage('assets/OIP-removebg-preview (3).png');
   sun = loadImage('assets/OIP-removebg-preview (4).png');
   bug = loadImage('assets/OIP-removebg-preview (5).png');
+    bug1 = loadImage('assets/OIP-removebg-preview (5).png');
+     bug2 = loadImage('assets/OIP-removebg-preview (5).png');
+      bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
 
 }
@@ -24,15 +27,14 @@ function preload() {
   function setup() {
   createCanvas(400,400);
   background(0);
-
     //Bg with obstacles
-    bug.resize(30,30);
-    bug = new Sprite(bug,20,20,100);
-    bug.collider = "static";
+    bug.resize(50,50);
+    bug = new Sprite(bug,30,100,100);
+    bug.collider = "k";
     
   //Bg with water drops
   water.resize(30,30);
-  water = new Sprite(water, 100,random(10,400));
+  water = new Sprite(water, 100,random(40,400));
   water.collider = "static";
 
   //Bg with sun
@@ -88,7 +90,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
 
   //when ball collides with water drop
   if (seed.collides(water)){
-    seed.speed = seed.speed +2;
+    seed.speed = (seed.speed +1);
     water.visible = false;
     water.collider = "none";
     score = score + 1;
@@ -100,7 +102,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
 
   //When ball collides with sun 
   if (seed.collides(sun)){
-    seed.speed = seed.speed + 2;
+    seed.speed = (seed.speed + 1);
     sun.visible = false;
     sun.collider = "none";
     score = score + 1;
@@ -108,6 +110,12 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.y = random(10,400);
     sun.x = random (10,400);
     sun.visible = true;
+  }
+
+  //If ball collides with bug
+  if (seed.collides(bug)) {
+    seed.speed = (seed.speed - 1);
+    bug.collider = "none";
   }
 
   //When ball hits ground you lose
@@ -132,6 +140,8 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.y = 100; 
     water.visible = true;
     sun.visible = true;
+    bug.visible = true;
+    bug.x = random(40,400); 
   }
 
   // restart button visible
