@@ -3,15 +3,17 @@
 /* VARIABLES */
 let seed;
 let root;
-let stem; 
+let water; 
 let flower;
 let paddle;
 let score = 0;
+let restartButton;
 
 //Preload images
 function preload() {
   seed = loadImage('assets/seed-removebg-preview.png');
   paddle = loadImage('assets/th-removebg-preview.png');
+  water = loadImage('assets/OIP-removebg-preview (3).png');
 }
 
 /* SETUP RUNS ONCE */
@@ -19,10 +21,14 @@ function setup() {
   createCanvas(400,400);
   background(0);
 
+  //Bg with water drops
+  water = new Sprite(water, 100,100);
+
   //Create paddle 
   paddle.resize(100,100);
-  paddle = new Sprite(paddle,350,100,20);
+  paddle = new Sprite(paddle,300,100,20);
   paddle.rotationLock = true;
+  paddle.bounciness = 1;
   
   //Create ball
   seed.resize(20,20);
@@ -46,6 +52,14 @@ function setup() {
   //top wall
 	let wallTop = new walls.Sprite(width / 2, 0);
 	wallTop.rotation = 90;
+
+  //Create Restart Button
+  restartButton = new Sprite(width/2, height/2 + 100);
+  restartButton.w = 150;
+  restartButton.h = 50;
+  restartButton.color = "lightblue";
+  restartButton.collider = "kinematic";
+  restartButton.text = "Click here to try again!";
 }
 
 /* DRAW LOOP REPEATS */
@@ -71,7 +85,23 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     textSize(20);
     text('You lose!', 160, 160); 
   }
+  // Button clicked
+  if (restartButton.mouse.presses()) {
+    seed.direction = 'down';
+    seed.speed = 5;
+    seed.bounciness = 1;
+    seed.friction = 0;
+    score = 0;
+    seed.y = 50;
+  }
 
+  // restart button visible
+  restartButton.visible = false;
+  restartButton.pos = { x: -100, y: -100};
+  if (seed.y > 390){
+    restartButton.visible = true;
+    restartButton.pos = { x: 200, y: 200};
+  }
 
   //Draw the score
   fill(0, 128, 128);
