@@ -34,21 +34,21 @@ function preload() {
     //Bg with bug
     bug.resize(50,50);
     bug = new Sprite(bug,30,100,100);
-    bug.collider = "k";
+    bug.collider = "static";
   // Bug1
     bug1.resize(50,50);
     bug1 = new Sprite(bug1,100,70,100);
-    bug1.collider = "k";
+    bug1.collider = "static";
     bug1.visible = false;
   //Bug2
     bug2.resize(50,50);
     bug2 = new Sprite(bug2,290,150,100);
-    bug2.collider = "k";
+    bug2.collider = "static";
     bug2.visible = false;
   //Bug3
     bug3.resize(50,50);
     bug3 = new Sprite(bug3,350,250,100);
-    bug3.collider = "k";
+    bug3.collider = "static";
     bug3.visible = false;
     
   //Bg with water drops
@@ -63,10 +63,10 @@ function preload() {
 
   //Create paddle 
   paddle.resize(100,100);
-  paddle = new Sprite(paddle,300,100,20);
+  paddle = new Sprite(paddle,300,380,20);
   paddle.rotationLock = true;
   paddle.bounciness = 1;
-    paddle.collider = "kinematic";
+  paddle.collider = "kinematic";
   
   //Create ball
   seed.resize(30,30);
@@ -144,11 +144,16 @@ paddle.moveTowards(mouse.x, 380, 1.0);
 
   // Change animation of seed
   if (score >= 2) {
-  seed = new Sprite(root,200,100);
     root.visible = true;
   } else{
     root.visible = false;
   }
+
+  // Show bugs based on score
+  if (score >= 1) bug1.visible = true;
+  if (score >= 3) bug2.visible = true;
+  if (score >= 5) bug3.visible = true;
+
   //If ball collides with bug
   if (seed.collides(bug)) {
     seed.speed = (seed.speed - 1);
@@ -156,6 +161,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug.x = random(40,380);
     bug.y = random(40,300);
+    bug.collider = "static";
   }
   //Ball collides with bug 1
   if (seed.collides(bug1)) {
@@ -164,6 +170,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug1.x = random(40,380);
     bug1.y = random(40,300);
+    bug1.collider = "static";
   }
   // Ball collides with bug 2
   if (seed.collides(bug2)) {
@@ -172,6 +179,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug2.x = random(40,380);
     bug2.y = random(40,300);
+    bug2.collider = "static";
   }
   //Ball collides with bug 3
   if (seed.collides(bug3)) {
@@ -180,6 +188,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug3.x = random(40,380);
     bug3.y = random(40,300);
+    bug3.collider = "static";
   }
 
   //When ball hits ground you lose
@@ -204,8 +213,18 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.y = 100; 
     water.visible = true;
     sun.visible = true;
+    water.collider = "static";
+    sun.collider = "static";
     bug.visible = true;
+    bug1.visible = false;
+    bug2.visible = false;
+    bug3.visible = false;
+    bug.collider = "static";
+    bug1.collider = "static";
+    bug2.collider = "static";
+    bug3.collider = "static";
     bug.x = random(40,400); 
+    root.visible = false;
   }
 
   // restart button visible
