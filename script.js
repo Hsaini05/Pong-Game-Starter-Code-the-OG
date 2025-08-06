@@ -2,16 +2,17 @@
 
 /* VARIABLES */
 let seed;
+let sun;
 let bug;
 let bug1;
 let bug2;
+let bug3;
 let water; 
 let paddle;
 let score = 0;
 let restartButton;
 let rock;
 let root;
-let speed;
 
 //Preload images
 function preload() {
@@ -22,6 +23,7 @@ function preload() {
   bug = loadImage('assets/OIP-removebg-preview (5).png');
   bug1 = loadImage('assets/OIP-removebg-preview (5).png');
   bug2 = loadImage('assets/OIP-removebg-preview (5).png');
+  bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
   root = loadImage('assets/OIP-removebg-preview.png');
 
@@ -33,16 +35,21 @@ function preload() {
     bug.resize(50,50);
     bug = new Sprite(bug,30,100,100);
     bug.collider = "k";
-  // bug1
+  // Bug1
     bug1.resize(50,50);
     bug1 = new Sprite(bug1,100,70,100);
     bug1.collider = "k";
-    bug.visible = false;
-  //bug2
+    bug1.visible = false;
+  //Bug2
     bug2.resize(50,50);
     bug2 = new Sprite(bug2,290,150,100);
     bug2.collider = "k";
-    bug.visble = false;
+    bug2.visible = false;
+  //Bug3
+    bug3.resize(50,50);
+    bug3 = new Sprite(bug3,350,250,100);
+    bug3.collider = "k";
+    bug3.visible = false;
     
   //Bg with water drops
   water.resize(30,30);
@@ -69,14 +76,14 @@ function preload() {
   seed.bounciness = 1;
   seed.friction = 100;
 
+  //Create root
+    root.resize(100,100);
+    root = new Sprite(root, 200, 100);
+    root.collider = "none";
+    root.visible = false;
+
   // Creat second step of growth
-  root.resize(80,80);
-  root = new Sprite(root,200,10)
-    seed.direction = 'down';
-    seed.speed = 5;
-    seed.bounciness = 1;
-    seed.friction = 100;
-  root.visible = false
+    
   //Create walls
   walls = new Group();
 	walls.w = 10;
@@ -133,6 +140,13 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.visible = true;
   }
 
+  // Change animation of seed
+  if (score >= 2) {
+  seed = new Sprite(root,200,100);
+    root.visible = true;
+  } else(
+    root.visible = false;
+  )
   //If ball collides with bug
   if (seed.collides(bug)) {
     seed.speed = (seed.speed - 1);
@@ -148,7 +162,6 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug1.x = random(40,380);
     bug1.y = random(40,300);
-    bug1.
   }
   // Ball collides with bug 2
   if (seed.collides(bug2)) {
@@ -157,6 +170,14 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug2.x = random(40,380);
     bug2.y = random(40,300);
+  }
+  //Ball collides with bug 3
+  if (seed.collides(bug3)) {
+    seed.speed = (seed.speed - 1);
+    bug3.collider = "none";
+    score = score - 1;
+    bug3.x = random(40,380);
+    bug3.y = random(40,300);
   }
 
   //When ball hits ground you lose
@@ -182,6 +203,7 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     water.visible = true;
     sun.visible = true;
     bug.visible = true;
+    bug.x = random(40,400); 
   }
 
   // restart button visible
