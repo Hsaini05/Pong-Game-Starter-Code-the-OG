@@ -2,36 +2,51 @@
 
 /* VARIABLES */
 let seed;
-let root;
+let bug;
 let water; 
-let flower;
 let paddle;
 let score = 0;
 let restartButton;
+let rock;
 
 //Preload images
 function preload() {
   seed = loadImage('assets/seed-removebg-preview.png');
   paddle = loadImage('assets/th-removebg-preview.png');
   water = loadImage('assets/OIP-removebg-preview (3).png');
+  sun = loadImage('assets/OIP-removebg-preview (4).png');
+  bug = loadImag('assets/OIP-removebg-preview (5).png');
+  rock = loadImage('assets/download-removebg-preview.png');
+
 }
 
-/* SETUP RUNS ONCE */
-function setup() {
+  function setup() {
   createCanvas(400,400);
   background(0);
 
+    //Bg with obstacles
+    bug = new Sprite(bug,20,20,100);
+    bug.collider = "static";
+    
   //Bg with water drops
-  water = new Sprite(water, 100,100);
+  water.resize(30,30);
+  water = new Sprite(water, 100,random(10,400));
+  water.collider = "static";
+
+  //Bg with sun
+    sun.resize(30,30);
+    sun = new Sprite(sun,random(20,400), 200);
+    sun.collider = "static";
 
   //Create paddle 
   paddle.resize(100,100);
   paddle = new Sprite(paddle,300,100,20);
   paddle.rotationLock = true;
   paddle.bounciness = 1;
+    paddle.collider = "k";
   
   //Create ball
-  seed.resize(20,20);
+  seed.resize(30,30);
   seed = new Sprite(seed, 200, 10);
   seed.direction = 'down';
   seed.speed = 5;
@@ -68,11 +83,29 @@ function draw() {
 
   //Move the paddle
 paddle.moveTowards(mouse.x, 380, 1.0);
-  //When ball collides with paddle bounce off and increase score
-  if (seed.collides(paddle)) {
-    seed.speed = 8;
+
+  //when ball collides with water drop
+  if (seed.collides(water)){
+    seed.speed = speed +2;
+    water.visible = false;
+    water.collider = "none";
     score = score + 1;
     seed.direction = seed.direction + random (-10, 10);
+    water.x = random (20,400);
+    water.y = random (20,400);
+    water.visible = true;
+  }
+
+  //When ball collides with sun 
+  if (seed.collides(sun)){
+    seed.speed = speed + 2;
+    sun.visible = false;
+    sun.collider = "none";
+    score = score + 1;
+    seed.direction = seed.direction + random (-10, 10);
+    sun.y = random(10,400);
+    sun.x = random (10,400);
+    SubmitEvent.visible = true;
   }
 
   //When ball hits ground you lose
@@ -93,6 +126,10 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     seed.friction = 0;
     score = 0;
     seed.y = 50;
+    water.y = 100;
+    sun.y = 100; 
+    water.visible = true;
+    sun.visible = true;
   }
 
   // restart button visible
