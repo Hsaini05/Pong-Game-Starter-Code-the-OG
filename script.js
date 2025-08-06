@@ -3,6 +3,9 @@
 /* VARIABLES */
 let seed;
 let bug;
+let bug1;
+let bug2;
+let bug3;
 let water; 
 let paddle;
 let score = 0;
@@ -17,9 +20,9 @@ function preload() {
   water = loadImage('assets/OIP-removebg-preview (3).png');
   sun = loadImage('assets/OIP-removebg-preview (4).png');
   bug = loadImage('assets/OIP-removebg-preview (5).png');
-    bug1 = loadImage('assets/OIP-removebg-preview (5).png');
-     bug2 = loadImage('assets/OIP-removebg-preview (5).png');
-      bug3 = loadImage('assets/OIP-removebg-preview (5).png');
+  bug1 = loadImage('assets/OIP-removebg-preview (5).png');
+  bug2 = loadImage('assets/OIP-removebg-preview (5).png');
+  bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
 
 }
@@ -27,10 +30,22 @@ function preload() {
   function setup() {
   createCanvas(400,400);
   background(0);
-    //Bg with obstacles
+    //Bg with bug
     bug.resize(50,50);
     bug = new Sprite(bug,30,100,100);
     bug.collider = "k";
+  // Bug1
+    bug1.resize(50,50);
+    bug1 = new Sprite(bug,50,70,100);
+    bug1.collider = "k";
+  //Bug2
+    bug2.resize(50,50);
+    bug2 = new Sprite(bug,80,150,100);
+    bug2.collider = "k";
+  //Bug3
+    bug3.resize(50,50);
+    bug3 = new Sprite(bug,100,250,100);
+    bug3.collider = "k";
     
   //Bg with water drops
   water.resize(30,30);
@@ -95,8 +110,8 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     water.collider = "none";
     score = score + 1;
     seed.direction = seed.direction + random (-10, 10);
-     water.x = random (20,400);
-    water.y = random (20,400);
+     water.x = random (20,380);
+    water.y = random (20,300);
     water.visible = true;
   }
 
@@ -107,8 +122,8 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.collider = "none";
     score = score + 1;
     seed.direction = seed.direction + random (-10, 10);
-    sun.y = random(10,400);
-    sun.x = random (10,400);
+    sun.y = random(10,300);
+    sun.x = random (10,380);
     sun.visible = true;
   }
 
@@ -116,6 +131,9 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   if (seed.collides(bug)) {
     seed.speed = (seed.speed - 1);
     bug.collider = "none";
+    score = score - 1;
+    bug.x = random(40,380);
+    bug.y = random(40,300);
   }
 
   //When ball hits ground you lose
