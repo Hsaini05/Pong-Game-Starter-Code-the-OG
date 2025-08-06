@@ -8,6 +8,7 @@ let paddle;
 let score = 0;
 let restartButton;
 let rock;
+let root;
 
 //Preload images
 function preload() {
@@ -15,7 +16,7 @@ function preload() {
   paddle = loadImage('assets/th-removebg-preview.png');
   water = loadImage('assets/OIP-removebg-preview (3).png');
   sun = loadImage('assets/OIP-removebg-preview (4).png');
-  bug = loadImag('assets/OIP-removebg-preview (5).png');
+  bug = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
 
 }
@@ -25,6 +26,7 @@ function preload() {
   background(0);
 
     //Bg with obstacles
+    bug.resize(30,30);
     bug = new Sprite(bug,20,20,100);
     bug.collider = "static";
     
@@ -86,26 +88,26 @@ paddle.moveTowards(mouse.x, 380, 1.0);
 
   //when ball collides with water drop
   if (seed.collides(water)){
-    seed.speed = speed +2;
+    seed.speed = seed.speed +2;
     water.visible = false;
     water.collider = "none";
     score = score + 1;
     seed.direction = seed.direction + random (-10, 10);
-    water.x = random (20,400);
+     water.x = random (20,400);
     water.y = random (20,400);
     water.visible = true;
   }
 
   //When ball collides with sun 
   if (seed.collides(sun)){
-    seed.speed = speed + 2;
+    seed.speed = seed.speed + 2;
     sun.visible = false;
     sun.collider = "none";
     score = score + 1;
     seed.direction = seed.direction + random (-10, 10);
     sun.y = random(10,400);
     sun.x = random (10,400);
-    SubmitEvent.visible = true;
+    sun.visible = true;
   }
 
   //When ball hits ground you lose
