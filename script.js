@@ -5,13 +5,13 @@ let seed;
 let bug;
 let bug1;
 let bug2;
-let bug3;
 let water; 
 let paddle;
 let score = 0;
 let restartButton;
 let rock;
 let root;
+let speed;
 
 //Preload images
 function preload() {
@@ -22,7 +22,6 @@ function preload() {
   bug = loadImage('assets/OIP-removebg-preview (5).png');
   bug1 = loadImage('assets/OIP-removebg-preview (5).png');
   bug2 = loadImage('assets/OIP-removebg-preview (5).png');
-  bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
   root = loadImage('assets/OIP-removebg-preview.png');
 
@@ -33,19 +32,15 @@ function preload() {
     //Bg with bug
     bug.resize(50,50);
     bug = new Sprite(bug,30,100,100);
-    bug.collider = "k";
-  // Bug1
+    bug.collider = "static";
+  // bug1
     bug1.resize(50,50);
     bug1 = new Sprite(bug1,100,70,100);
-    bug1.collider = "k";
-  //Bug2
+    bug1.collider = "static";
+  //bug2
     bug2.resize(50,50);
     bug2 = new Sprite(bug2,290,150,100);
-    bug2.collider = "k";
-  //Bug3
-    bug3.resize(50,50);
-    bug3 = new Sprite(bug3,350,250,100);
-    bug3.collider = "k";
+    bug2.collider = "static";
     
   //Bg with water drops
   water.resize(30,30);
@@ -159,14 +154,6 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = score - 1;
     bug2.x = random(40,380);
     bug2.y = random(40,300);
-  }
-  //Ball collides with bug 3
-  if (seed.collides(bug3)) {
-    seed.speed = (seed.speed - 1);
-    bug3.collider = "none";
-    score = score - 1;
-    bug3.x = random(40,380);
-    bug3.y = random(40,300);
   }
 
   //When ball hits ground you lose
