@@ -13,6 +13,8 @@ let water1;
 let paddle;
 let score = 0;
 let restartButton;
+let bouquet;
+let stem;
 
 //Preload images
 function preload() {
@@ -26,11 +28,20 @@ function preload() {
   bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   sun1 = loadImage('assets/OIP-removebg-preview (4).png');
   water1 =loadImage('assets/OIP-removebg-preview (3).png');
+  bouquet = loadImage('assets/OIP-removebg-preview (2).png');
+  stem = loadImage('assets/OIP-removebg-preview (1).png');
 
 }
   function setup() {
   createCanvas(400,400);
   background(0);
+
+    //Make stems
+   stem.resize(50,50);
+    stem = new Sprite(stem,200,100);
+   stem.collider = "none";
+    stem.visible = false;
+    
     //Bg with bug
     bug.resize(50,50);
     bug = new Sprite(bug,30,100,100);
@@ -85,6 +96,12 @@ function preload() {
   seed.speed = 5;
   seed.bounciness = 1;
   seed.friction = 100;
+
+  //Create Bouquet
+    bouquet.resize(200,200);
+    bouquet = new Sprite(bouquet,200,130);
+    bouquet.collider = "none";
+    bouquet.visible = false;
     
   //Create walls
   walls = new Group();
@@ -284,11 +301,18 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   text('Score = ' + score, 10, 30);
 
   //Draw a win scene
-  if (score >= 5){
+  if (score >= 1){
     fill(0, 128, 128);
     textAlign(CENTER);
     textSize(50);
-    text('YOU WIN!', 200,200);
+    text('YOU WIN!', 200, 50); 
+    textSize(15);
+    text('Quick life lesson: bugs are not your friends! And', 200,260); 
+     text('remember that no matter what happens in life dont', 200,300); 
+    text('give up hope water and sun are resources to',200,280); 
+    text('improve in growth and even if you get alot of obstacles.',200,320);
+    text('!DONT GIVE UP! ', 200, 340);
+    text('Score = ').visible = false;
     seed.visible = false;
     paddle.visible = false;
     water.visible = false;
@@ -299,6 +323,10 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     bug1.visible = false;
     bug2.visible = false;
     bug3.visible = false;
-    text('YOU WIN!').visible = true;
+    seed.speed = 0;
+    seed.vel.x = 0;
+    seed.vel.y = 0;
+    bouquet.visible = true;
+    bouquet.collider = "static";
   }
 }	
