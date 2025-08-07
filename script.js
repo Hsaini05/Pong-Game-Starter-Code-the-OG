@@ -142,17 +142,12 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.collider = "static";
   }
 
-  // Change animation of seed
-  if (score >= 2) {
-    root.visible = true;
-  } else{
-    root.visible = false;
-  }
-
   // Show bugs based on score and manage their colliders
   if (score >= 1) {
     bug1.visible = true;
     bug1.collider = "static";
+    seed.visible = false;
+    seed.image = root;
   } else {
     bug1.visible = false;
     bug1.collider = "none";
