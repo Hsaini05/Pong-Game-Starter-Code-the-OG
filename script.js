@@ -312,7 +312,6 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     text('give up hope water and sun are resources to',200,280); 
     text('improve in growth and even if you get alot of obstacles.',200,320);
     text('!DONT GIVE UP! ', 200, 340);
-    text('Score = ').visible = false;
     seed.visible = false;
     paddle.visible = false;
     water.visible = false;
