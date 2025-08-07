@@ -3,16 +3,17 @@
 /* VARIABLES */
 let seed;
 let sun;
+let sun1;
 let bug;
 let bug1;
 let bug2;
 let bug3;
 let water; 
+let water1;
 let paddle;
 let score = 0;
 let restartButton;
 let rock;
-let root;
 
 //Preload images
 function preload() {
@@ -25,7 +26,7 @@ function preload() {
   bug2 = loadImage('assets/OIP-removebg-preview (5).png');
   bug3 = loadImage('assets/OIP-removebg-preview (5).png');
   rock = loadImage('assets/download-removebg-preview.png');
-  root = loadImage('assets/OIP-removebg-preview.png');
+  water1 =loadImage('assets/OIP-removebg-preview (3).png');
 
 }
   function setup() {
@@ -55,6 +56,11 @@ function preload() {
   water.resize(30,30);
   water = new Sprite(water, 100,random(40,400));
   water.collider = "static";
+
+  //Bg with water1
+    water1.resize(30,30);
+    water1 = new Sprite(water1, 200,random(50,400));
+    water1.collider = "static";
 
   //Bg with sun
     sun.resize(30,30);
@@ -128,6 +134,18 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     water.visible = true;
     water.collider = "static";
   }
+  //When ball collides with water1
+  if (seed.collides(water1)){
+    seed.speed = (seed.speed +1);
+    water1.visible = false;
+    water1.collider = "none";
+    score = score + 1;
+    seed.direction = seed.direction + random (-10, 10);
+     water1.x = random (20,380);
+    water1.y = random (20,300);
+    water1.visible = true;
+    water1.collider = "static";
+  }
 
   //When ball collides with sun 
   if (seed.collides(sun)){
@@ -146,8 +164,6 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   if (score >= 1) {
     bug1.visible = true;
     bug1.collider = "static";
-    seed.visible = false;
-    seed.image = root;
   } else {
     bug1.visible = false;
     bug1.collider = "none";
@@ -226,10 +242,13 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     seed.y = 50;
     water.y = 100;
     sun.y = 100; 
+    water1.y = 200;
     water.visible = true;
     sun.visible = true;
+    water1.visible = true;
     water.collider = "static";
     sun.collider = "static";
+    water1.collider = "static";
     bug.visible = true;
     bug1.visible = false;
     bug2.visible = false;
@@ -239,7 +258,6 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     bug2.collider = "static";
     bug3.collider = "static";
     bug.x = random(40,400); 
-    root.visible = false;
   }
 
   // restart button visible
