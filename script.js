@@ -286,14 +286,14 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   //Draw a win scene
   if (score >= 5){
     fill(0, 128, 128);
-    textAlign(LEFT);
-    textsize(50);
+    textAlign(CENTER);
+    textSize(50);
     text('YOU WIN!', 200,200);
     seed.visible = false;
     paddle.visible = false;
     water.visible = false;
     water1.visible = false;
-    sun.visibe = false;
+    sun.visible = false;
     sun1.visible = false;
     bug.visible = false;
     bug1.visible = false;
