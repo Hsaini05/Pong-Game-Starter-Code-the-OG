@@ -13,7 +13,6 @@ let water1;
 let paddle;
 let score = 0;
 let restartButton;
-let rock;
 
 //Preload images
 function preload() {
@@ -25,7 +24,7 @@ function preload() {
   bug1 = loadImage('assets/OIP-removebg-preview (5).png');
   bug2 = loadImage('assets/OIP-removebg-preview (5).png');
   bug3 = loadImage('assets/OIP-removebg-preview (5).png');
-  rock = loadImage('assets/download-removebg-preview.png');
+  sun1 = loadImage('assets/OIP-removebg-preview (4).png');
   water1 =loadImage('assets/OIP-removebg-preview (3).png');
 
 }
@@ -67,6 +66,11 @@ function preload() {
     sun = new Sprite(sun,random(20,400), 200);
     sun.collider = "static";
 
+    //Bg with sun1
+    sun1.resize(30,30);
+    sun1 = new Sprite(sun1,random(40,400), 350);
+    sun1.collider = "static";
+
   //Create paddle 
   paddle.resize(100,100);
   paddle = new Sprite(paddle,300,380,20);
@@ -81,14 +85,6 @@ function preload() {
   seed.speed = 5;
   seed.bounciness = 1;
   seed.friction = 100;
-
-  //Create root
-    root.resize(100,100);
-    root = new Sprite(root, 200, 100);
-    root.collider = "none";
-    root.visible = false;
-
-  // Creat second step of growth
     
   //Create walls
   walls = new Group();
@@ -159,7 +155,18 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     sun.visible = true;
     sun.collider = "static";
   }
-
+  //If ball collides with sun1
+  if (seed.collides(sun1)){
+    seed.speed = (seed.speed + 1);
+    sun1.visible = false;
+    sun1.collider = "none";
+    score = score + 1;
+    seed.direction = seed.direction + random (-10, 10);
+    sun1.y = random(10,300);
+    sun1.x = random (10,380);
+    sun1.visible = true;
+    sun1.collider = "static";
+  }
   // Show bugs based on score and manage their colliders
   if (score >= 1) {
     bug1.visible = true;
@@ -241,10 +248,12 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     score = 0;
     seed.y = 50;
     water.y = 100;
-    sun.y = 100; 
+    sun.y = 100;
+    sun1.y = 350;
     water1.y = 200;
     water.visible = true;
     sun.visible = true;
+    sun1.visible = true;
     water1.visible = true;
     water.collider = "static";
     sun.collider = "static";
@@ -273,4 +282,23 @@ paddle.moveTowards(mouse.x, 380, 1.0);
   textAlign(LEFT);
   textSize(20);
   text('Score = ' + score, 10, 30);
+
+  //Draw a win scene
+  if (score >= 5){
+    fill(0, 128, 128);
+    textAlign(LEFT);
+    textsize(50);
+    text('YOU WIN!', 200,200);
+    seed.visible = false;
+    paddle.visible = false;
+    water.visible = false;
+    water1.visible = false;
+    sun.visibe = false;
+    sun1.visible = false;
+    bug.visible = false;
+    bug1.visible = false;
+    bug2.visible = false;
+    bug3.visible = false;
+    text('YOU WIN!').visible = true;
+  }
 }	
