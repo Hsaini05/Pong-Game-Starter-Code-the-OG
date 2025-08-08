@@ -99,7 +99,7 @@ function preload() {
 
   //Create Bouquet
     bouquet.resize(200,200);
-    bouquet = new Sprite(bouquet,200,130);
+    bouquet = new Sprite(bouquet,200,00);
     bouquet.collider = "none";
     bouquet.visible = false;
     
@@ -307,11 +307,9 @@ paddle.moveTowards(mouse.x, 380, 1.0);
     textSize(50);
     text('YOU WIN!', 200, 50); 
     textSize(15);
-    text('Quick life lesson: bugs are not your friends! And', 200,260); 
-     text('remember that no matter what happens in life dont', 200,300); 
-    text('give up hope water and sun are resources to',200,280); 
-    text('improve in growth and even if you get alot of obstacles.',200,320);
-    text('!DONT GIVE UP! ', 200, 340);
+    text('Quick life lesson: bugs are not your friends!', 200,240); 
+    text('And remember that no matter what happens in life dont', 200,280) 
+    text('give up hope water and sun are resources to improve in growth and even if you get alot of obstacles. !DONT GIVE UP! ', 200, 200);
     seed.visible = false;
     paddle.visible = false;
     water.visible = false;
