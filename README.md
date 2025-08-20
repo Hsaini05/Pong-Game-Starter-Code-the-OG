@@ -1,5 +1,5 @@
 # Pong Game Starter Code
-This is a place for you to start building your Pong Game!
+This is a place for you to start building your Pong Game! Game link (https://github.com/Hsaini05/Pong-Game-Starter-Code-the-OG)
 
 ###  Project Description
 Create a game where you move the paddle from left to right to try and keep the bouncing ball from touching the ground. If it touches the ground you lose the game. 
